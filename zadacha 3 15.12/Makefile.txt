@@ -1,6 +1,0 @@
-all: quadraticroots.o main.out
-
-quadraticroots.o: quadraticroots.h quadraticroots.c
-	gcc -c quadraticroots.c -o quadraticroots.o
-main.out:
-	gcc main.c quadraticroots.o -o main.out
