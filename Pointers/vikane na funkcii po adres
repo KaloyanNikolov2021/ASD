@@ -1,0 +1,24 @@
+Vikane na funkcii po adres
+
+void sixtofive(int x){
+	x=5;
+}
+int main(){
+	int a = 15;
+	sixtofive(a);
+	printf("%d\n", a); => pak shte izvede 15
+	return 0;                   //vikane na funkciq po stoinost
+}
+
+__________ shte se promeni ako_____________
+
+void sixtofive(int * x){
+	*x=5;   //promenqme tova kum koeto shte sochi x  //ako nqma * prosto shte priema stoinostta na adresa na 5, ne 5 (mai ???)
+}
+int main(){
+	int a = 15;
+	sixtofive(&a);
+	printf("%d\n", a); => 5
+	return 0;  
+}
+

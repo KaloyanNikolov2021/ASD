@@ -1,0 +1,12 @@
+Ukazateli kum funkcii
+
+void print(int x){
+	print ("%d\n", x):
+}
+int main(){
+	void(* fptr)(int) = print;  //function pointer
+	(* fptr)(10); //shte printira 10 //pointer kum funkciqta => fptr sochi kum funkciqta
+	return 0;
+}
+
+Where *fptr is a function pointer, capable of referring a function whose return type is void and also it will not take any argument ().

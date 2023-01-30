@@ -1,0 +1,53 @@
+dinamichna pamet
+
+“*” Operator is used as pointer to a variable. Example: * a where * is pointer to the variable a.
+& operator is used to get the address of the variable. Example: &a will give address of a.
+
+int a = 10;
+v pametta //0000 0000 0000 0000 0000 0000 0000 1010
+print("%p\n", &a) //printira adresa na promenlivata
+v pametta izglejda taka:
+
+char a=5; 		0 |
+				1 |
+				2 | 0000 0101
+char *p=&a;		3 |
+				4 | 0000 0010 => 2
+			
+int *p = &a <- ukazatel
+zapisva adresi na promenlivi
+promenliva zapisva adresi na drugi promenlivi
+
+char *p = 10;
+%p, p => segmentation fault
+
+ako se opitash da izpolzvash pamet zadelena za neshto drugo, kato operacionna sistema ili brauzer naprimer, shte izvede segmentation fault
+ne barai izvun zadelenata ti pamet, inache segmentation fault
+
+print("%p\n", &p) //printira adresa na promenlivata p
+print("%d\n", *p) //stoinostta na p = a printira tova koeto e zapazeno na tozi adres
+print("%p\n", p) //printira adresa koito p e store-nal, v sluchaq a
+*p = 15; //pravi stoinostta na tozi adres da e ravna na 15
+print("%d\n", a); => a sushto shte si promeni stoinostta
+
+char ** p = [1093057034] -> [129837198321] -> [6829539875]
+
+int x1 = 12;
+int x2 = 15;
+
+int *k = &x1; //vzima adresa na x1
+int *z = k; //vzima stoinostta na k
+print("%d\n", *z); => 21 
+print("%d\n", *k); => 21
+print("%d\n", x1); => 21
+*z = 21;
+
+float b1 = 5.5;
+float *l2 = &b1; 
+
+//sizeof(l2) = 4 - 32 bit architecture / 8 - 64 bit architecture //strukturata na sistemata, kolko golqma e pametta ti
+
+p = &b;
+*(float *) p = 15; //poneje e int promenliva se preebava i misli che e ravno na 0
+printf("%f\n", *(float *)p); => printira 0.00000000
+
