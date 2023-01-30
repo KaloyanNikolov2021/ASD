@@ -1,7 +1,0 @@
-all: bitstate.o robot.exe
-bitstate.o: bitstate.h bitstate.c
-	gcc -c bitstate.c -o bitstate.o
-robot.exe: bitstate.o robot.c
-	gcc robot.c bitstate.o -o robot.exe
-clean:
-	del -f *.o *.exe
