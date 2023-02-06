@@ -1,0 +1,29 @@
+💀️ Ukazateli i masivi 💀️
+
+int main(void)
+{
+	int arr[5]={1, 6, 3, 4, 2};
+	printf("size of int: %zu", sizeof(int); 	//printira razmera na intigera v baitove 
+	for(int i=0; i<5; i++)
+	{
+		printf("arr[%d] = %p->%d", i, &arr[i], arr[i]);	
+	}
+}
+
+pointerstopointers.v
+
+int main(void)
+{       
+	int a = 15;
+	int *p = &a;
+	int **pp = &p;
+	
+	printf("&a = %p\n", &a);		&a = x	
+	printf("p = %p\n", p);			p = x
+	printf("&p = %p\n", &p);		&p = ne e x neshto drugo
+	printf("pp = %p\n", pp);		pp = tova kato &p
+	printf("&pp = %p\n", &pp); 		&pp = pak neshto drugo
+	printf("*p = %d\n", *p); 		*p = 15
+	printf("**pp = %d\n", **pp);	*pp = 15
+	return 0;
+} 	
