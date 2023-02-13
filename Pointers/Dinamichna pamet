@@ -1,0 +1,166 @@
+int arr[3]={1, 2, 3};
+int (*p)[3] = arr; 		//ukazatel kum masiv
+
+int arr[3][4] = {
+	{1, 2, 3, 4},
+	{5, 6, 7, 8},
+	{9, 10, 11, 12}
+};
+
+	*(*(arr + 2) + 2)	//izvikvane na elementa '11'
+
+Dinamichna pamet
+RAM е временна банка с памет, където вашият компютър съхранява данни, които трябва да извлече бързо.
+RAM поддържа данните лесно достъпни, така че вашият процесор може бързо да ги намери,
+без да се налага да влизате в дългосрочно хранилище, за да завършите незабавни задачи за обработка.
+
+Kakvi vidove pamet se deli pametta za C programite
+programata vzima chast ot RAM pametta
+
+ _______\	RAM pamet
+ |       \	 _______	
+ |   ____/   |_____|
+ |   |  /	 |     |
+ |   |		 |     |
+ |   |		 |_____|
+ |   |
+ 
+ programa																TOVA SA SEGMENTI OT PAMETTA
+ ______
+ |_____| -> text/code segment 	//read only, instrukcii za programata da printira raboti, naprimer printf("Hello, World); da go printira, toest ig vsichko v koda? mai za tova e nai mnogo
+ |_____| -> data segment 		//globalnite promenlivi i lokalnite statichni promenlivi koito sushtestvuvat prez cqlata programa
+ |_____| -> stack segment 		//sudurja stack-a na funkciite, vsichki lokalni promenlivi, razmera zavisi ot operacionnata sistema										
+		 -> HEAP 				//izvunredno zadelena pamet za nashtata programa, predostavena pamet za nashata programa
+								//izdava se zaqvka do operacionnata sistema za oshte pamet za nashata programa
+								//izpolzvash pamet koqto ne e zadelena, ama ne se izpolzva 
+	Data segment
+ 	   a) Uninitialiced Data segment -> vsichki lokalni i globalni statichni promenlivi bez stoinost ili stoinost = 0  	//naprimer static int x
+	   b) Initialiced Data segment -> vuv nego se zapisvat vsichki danni koito imat nqkakva stoinost v nachalot
+	   
+#include<stdio.h>
+int something = 0;
+int main(void){
+	printf("hello world");
+	return 0;
+}
+
+$ size memorylayout.out												//command
+ 	text	data	bss		dec		hex		filename
+	1418	548		4		1970	7b2		memorylayout.out		//v baitove koe kolko zaema	
+
+Динамично разпределение на паметта
+💀💀 MALLOC 💀💀
+ 
+#include<stdio.h>
+#include<stdlib.h> //bibliotekata za funkciite malloc, calloc, realloc()
+int main(void)
+{
+int * arr = (int *)malloc(5 * sizeof(int)); 
+arr[0] = 5; 
+arr[1] = 7;
+arr[2] = 10;
+arr[3] = 15;
+arr[4] = 14;
+	for (int i = 0; i < 5; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+}
+
+Методът “malloc” или “memory allocation” в C се използва за динамично разпределяне на единичен голям блок памет с определен размер.
+Той връща указател от тип void, който може да бъде преобразуван в указател от всякаква форма.
+Той не инициализира паметта по време на изпълнение, така че първоначално да е инициализирал всеки блок със стойността за боклук по подразбиране.
+
+ptr = (cast-type*) malloc(byte-size)	//For Example ptr = (int*) malloc(100 * sizeof(int));
+Since the size of int is 4 bytes, this statement will allocate 400 bytes of memory. And, the pointer ptr holds the address of the first byte in the allocated memory.
+If space is insufficient, allocation fails and returns a NULL pointer.
+
+#include <stdio.h>
+#include <stdlib.h> 
+int main()
+{
+    	// This pointer will hold the
+    	// base address of the block created
+    int* ptr;
+    int n, i;
+    	// Get the number of elements for the array
+    printf("Enter number of elements:");
+    scanf("%d",&n);
+    printf("Entered number of elements: %d\n", n);
+    	// Dynamically allocate memory using malloc()
+    ptr = (int*)malloc(n * sizeof(int));
+    	// Check if the memory has been successfully
+    	// allocated by malloc or not
+    if (ptr == NULL) {
+        printf("Memory not allocated.\n");
+        exit(0);
+    }
+    else 
+    {
+        	// Memory has been successfully allocated
+        printf("Memory successfully allocated using malloc.\n");
+        	// Get the elements of the array
+        for (i = 0; i < n; ++i) 
+        {
+            ptr[i] = i + 1;
+        }
+        	// Print the elements of the array
+        printf("The elements of the array are: ");
+        for (i = 0; i < n; ++i) 
+        {
+            printf("%d, ", ptr[i]);
+        }
+    }
+    return 0;
+}
+
+Enter number of elements: 5
+Memory successfully allocated using malloc.
+The elements of the array are: 1, 2, 3, 4, 5,
+
+💀💀💀 CALLOC() 💀💀💀 
+Методът „calloc“ или „непрекъснато разпределение“ в C се използва за динамично разпределяне на определен брой блокове памет от посочения тип
+Tой е много подобен на malloc(), но има две различни точки и те са:
+	- Той инициализира всеки блок със стойност по подразбиране „0“.
+    - Има два параметъра или аргумента в сравнение с malloc().
+
+ptr = (cast-type*)calloc(n, element-size);	//For example: ptr = (float*) calloc(25, sizeof(float));
+here, n is the number of elements and element-size is the size of each element.
+This statement allocates contiguous space in memory for 25 elements each with the size of the float.
+
+#include <stdio.h>
+#include <stdlib.h> 
+int main()
+{  
+    int* ptr;	//This pointer will hold the base address of the block created
+    int n, i; 	// Get the number of elements for the array
+    n = 5;
+    printf("Enter number of elements: %d\n", n);	// Dynamically allocate memory using calloc()
+    ptr = (int*)calloc(n, sizeof(int));				// Check if the memory has been successfully allocated by calloc or not
+    if (ptr == NULL)
+    {
+        printf("Memory not allocated.\n");
+        exit(0);
+    }
+    else 
+    {
+        printf("Memory successfully allocated using calloc.\n");	// Memory has been successfully allocated
+        for (i = 0; i < n; ++i) 									// Get the elements of the array
+        {
+            ptr[i] = i + 1;
+        }
+ 	       // Print the elements of the array
+        printf("The elements of the array are: ");
+        for (i = 0; i < n; ++i) 
+        {
+            printf("%d, ", ptr[i]);
+        }
+    }
+	return 0;
+}
+
+Enter number of elements: 5
+Memory successfully allocated using calloc.
+The elements of the array are: 1, 2, 3, 4, 5,
+
+
