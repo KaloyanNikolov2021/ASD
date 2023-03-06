@@ -1,0 +1,70 @@
+Obektno orientirane v programiraneto
+
+const unsigned long long //konstanta ot tip unsigned long long 
+typedef const unsigned long long tcull;
+tcull z = x;
+typedef int (*F_PTR)(int, int);
+F_PTR fptr = add;
+printf("%d\n", fptr(5, 5)); 
+typedef long long ll;
+typedef unsigned ll ull;	//sukrashtavame pisane basically
+//ne mojesh da kombinirash nqkolko typedef-a 
+
+tipove koito mogat da priemat stoinosti samo koito nie sme im dali
+enumeration - enum 
+//It is mainly used to assign names to integral constants
+//the names make a program easy to read and maintain.
+int main(void)
+{
+	enum weekday day = SUNDAY;
+	day = WEDNESDAY; 
+	
+	switch (day){
+		case SUNDAY:
+		case SATURDAY:
+			printf("are cs");
+			break;
+		default:
+			printf("spi mi se");
+			break;
+	}
+https://media.geeksforgeeks.org/wp-content/cdn-uploads/Enum-In-C.png
+}
+enum weekday{
+	SUNDAY,
+	MONDAY,		//moje da priema stoinosti samo ot
+	TUESDAY,	//strukturata koqto sme napravili
+	WEDNESDAY,	//edin vid sa konstanti
+	THURSDAY,	//pravim go s glavni da se razlichava
+	FRIDAY,		//ogranichavame do opredeleni stoinostti
+	SATURDAY,
+}
+
+enum month{
+	JAN = 2,
+	FEB, //3 (2+1)
+	MAR = 7,
+	APR,
+	MAY,
+	JUN,
+	JUL,
+	AUG = 15,
+	SEP = 17,
+	OCT = 5,
+	NOV,
+	DEC, //same value as march
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
