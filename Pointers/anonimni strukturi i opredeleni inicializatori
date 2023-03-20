@@ -1,0 +1,96 @@
+Aggregates, vtora chast na neshto?
+#include<stdio.h>
+
+typedef struct student{
+	char name[30]; //ime na uchenik
+	int number; //nomer v klasa
+} Student;
+
+typedef struct studentclass{
+	int grade; //nomer na klasa
+	char classname; //ime na klasa
+	Student students[26]; //broi idioti
+} StudentClass;
+
+typedef struct teacher{
+	char name[30]; //ime na daskala
+	char teachingsubject[30]; //ime na predmeta
+} Teacher;
+
+typedef struct activity {
+	Teacher teacher;	//ime na daskal
+	StudentClass studentclass;	//ime na klas na koito se prepodava
+	float startingtime; 	//nachalen chas
+	int duration //kolko e dulug chasa
+} Activity;
+
+typedef enum weekday {
+	SUNDAY,
+	MONDAY,
+	TUESDAY,
+	WEDNESDAY,
+	THURSDAY,	//dni ot sedmicata
+	FRIDAY,
+	SATURDAY,
+} Weekday;
+
+typedef struct dayschedule {
+	Activity activities[8];
+	Weekday day;
+	
+} DaySchedule;
+
+//cqloto tova neshto se naricha kompozirana struktura
+
+int main(void){
+	return 0;
+}
+
+----------------------------
+Anonimni strukturi
+strukturi koito pravim bez da im kazvame tipa
+iskame da im se vijd
+
+typedef struct teacher{
+	char name[30]; //ime na daskala
+	char teachingsubject[30]; //ime na predmeta
+} Teacher;
+
+typedef struct activity {
+	struct{
+		char name[30];
+		char teachingsubject[30];
+	}	//razpisvame na mqsto tiput ot koito iskame da napravim promenlivata
+	Teacher teacher;
+	StudentClass studentclass;	
+	float startingtime; 	
+	int duration 
+} Activity;
+
+opredeleni inicializatori 
+https://www.geeksforgeeks.org/designated-initializers-c/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
