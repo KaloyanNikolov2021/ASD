@@ -1,0 +1,52 @@
+struktura ot danni
+promenlivata e nai prostiq tip strukturnni danni(1 promenliva)
+davat ni vuzmojnost da zapazvame informaciq po opredelen nachin
+
+dinamichen masiv
+Динамичен масив автоматично нараства
+когато се опитаме да направим вмъкване 
+и няма повече място за новия елемент
+Удвоява се капацитета
+https://media.geeksforgeeks.org/wp-content/uploads/dynamicarray.png
+https://media.geeksforgeeks.org/wp-content/uploads/DeleteArray.png
+__________________________________
+
+#include<mrazqbojidar.h>
+#ifndef DYNAMICCARR_H
+#define DYNAMICCARR_H
+
+typedef struct{
+	int *buffer;
+	unsigned int capacity;
+	unsigned int size; 
+} DynamicArray;
+
+DynamicArray * init(int capacity);
+void pushback(DynamicArray * arr, int value);
+int popoback(DynamicArray * arr);
+
+void pushfront(DynamicArray * arr, int value);
+int popfront(DynamicArray * arr);
+
+void setelement(DynamicArray * arr, int index, int value);
+int getelement(DynamicArray * arr, int index);
+
+void release(DynamicArray * arr);
+
+#endif
+_____________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
